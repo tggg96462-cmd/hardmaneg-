@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formen - Каталог спортивних костюмів</title>
+    <style>
+        :root {
+            --bg-color: #0b0f0e;
+            --card-bg: #161d1b;
+            --accent-color: #00ff88;
+            --accent-hover: #00cc6a;
+            --text-main: #ffffff;
+            --text-muted: #8c9e97;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            padding-bottom: 50px;
+        }
+
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            padding: 16px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 24px;
+            padding-top: 10px;
+        }
+
+        .header h1 {
+            font-size: 26px;
+            font-weight: 800;
+            color: var(--accent-color);
+            letter-spacing: 0.5px;
+        }
+
+        .header p {
+            font-size: 12px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            margin-top: 4px;
+            letter-spacing: 1px;
+        }
+
+        .catalog-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .product-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.05);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .product-gallery {
+            position: relative;
+            width: 100%;
+            height: 380px;
+            background: #111;
+        }
+
+        .product-gallery img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: opacity 0.3s ease;
+        }
+
+        .discount-badge {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            background: var(--accent-color);
+            color: #000;
+            font-weight: 800;
+            font-size: 14px;
+            padding: 6px 12px;
+            border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(0, 255, 136, 0.4);
+            z-index: 2;
+        }
+
+        .gift-badge {
+            position: absolute;
+            top: 14px;
+            left: 14px;
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(5px);
+            color: var(--accent-color);
+            font-weight: 700;
+            font-size: 12px;
+            padding: 6px 10px;
+            border-radius: 50px;
+            border: 1px solid rgba(0,255,136,0.3);
+            z-index: 2;
+        }
+
+        .product-content {
+            padding: 16px;
+        }
+
+        .product-title {
+            font-size: 18px;
+            font-weight: 800;
+            margin-bottom: 6px;
+        }
+
+        .product-desc {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 14px;
+            line-height: 1.4;
+        }
+
+        .color-picker-box {
+            margin-bottom: 14px;
+        }
+
+        .color-picker-box h4 {
+            font-size: 12px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .color-selector {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+        }
+
+        .color-btn {
+            background: #1d2824;
+            border: 1px solid rgba(255,255,255,0.1);
+            color: #fff;
+            padding: 8px 4px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 11px;
+            cursor: pointer;
+            text-align: center;
+            transition: 0.2s;
+            user-select: none;
+        }
+
+        .color-btn.active {
+            background: var(--accent-color);
+            color: #000;
+            border-color: var(--accent-color);
+            font-weight: 700;
+        }
+
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 14px;
+            padding-top: 10px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .price-old {
+            font-size: 14px;
+            color: var(--text-muted);
+            text-decoration: line-through;
+        }
+
+        .price-new {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--accent-color);
+        }
+
+        .cta-button {
+            width: 100%;
+            background: var(--accent-color);
+            color: #000;
+            font-size: 15px;
+            font-weight: 800;
+            text-transform: uppercase;
+            padding: 14px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: 0.2s;
+            box-shadow: 0 4px 15px rgba(0, 255, 136, 0.2);
+            text-align: center;
+        }
+
+        .cta-button:active {
+            transform: scale(0.98);
+            background: var(--accent-hover);
+        }
+
+        .size-helper-box {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 16px;
+            margin-top: 24px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .size-helper-box h4 {
+            font-size: 13px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .size-inputs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .form-input {
+            width: 100%;
+            background: #1d2824;
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 12px;
+            border-radius: 10px;
+            color: #fff;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .form-input:focus {
+            border-color: var(--accent-color);
+        }
+
+        .calc-btn {
+            width: 100%;
+            background: #202b27;
+            color: var(--accent-color);
+            border: 1px solid rgba(0,255,136,0.3);
+            padding: 10px;
+            border-radius: 10px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        #calcResult {
+            margin-top: 8px;
+            font-size: 13px;
+            color: var(--accent-color);
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            display: none;
+            justify-content: center;
+            align-items: flex-end;
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: #141c19;
+            width: 100%;
+            max-width: 480px;
+            border-radius: 24px 24px 0 0;
+            padding: 24px;
+            box-shadow: 0 -10px 40px rgba(0,0,0,0.8);
+            max-height: 90vh;
+            overflow-y: auto;
+            border-top: 1px solid rgba(0,255,136,0.2);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .modal-header h3 {
+            font-size: 18px;
+            font-weight: 800;
+        }
+
+        .close-modal {
+            background: rgba(255,255,255,0.05);
+            border: none;
+            color: var(--text-muted);
+            font-size: 22px;
+            cursor: pointer;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .form-group {
+            margin-bottom: 12px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+            text-transform: uppercase;
+        }
+
+        .size-selector {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 6px;
+        }
+
+        .size-btn {
+            background: #1d2824;
+            border: 1px solid rgba(255,255,255,0.1);
+            color: #fff;
+            padding: 8px 0;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            text-align: center;
+            font-size: 13px;
+        }
+
+        .size-btn.active {
+            background: var(--accent-color);
+            color: #000;
+            border-color: var(--accent-color);
+        }
+
+        .success-message {
+            text-align: center;
+            padding: 30px 0;
+            display: none;
+        }
+
+        .success-message h3 {
+            color: var(--accent-color);
+            font-size: 22px;
+            margin-bottom: 8px;
+        }
+
+        .success-message p {
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header">
+            <h1>FORMEN STORE</h1>
+            <p>Колекція спортивних костюмів преміум якості</p>
+        </div>
+
+        <div class="catalog-grid" id="catalogGrid">
+            
+            <!-- ТОВАР 1: Nike Air Max (1599 грн) -->
+            <div class="product-card">
+                <div class="product-gallery">
+                    <div class="gift-badge">🎁 Шкарпетки у подарунок</div>
+                    <div class="discount-badge">-30%</div>
+                    <img id="img-airmax" src="https://i.postimg.cc/t4JDc9BL/IMG-3908.jpg" alt="Nike Air Max">
+                </div>
+                <div class="product-content">
+                    <div class="product-title">Спортивний костюм Nike Air Max</div>
+                    <div class="product-desc">Лімітована серія, преміум трикотаж, фірмовий стиль.</div>
+                    
+                    <div class="color-picker-box">
+                        <h4>Колір:</h4>
+                        <div class="color-selector">
+                            <div class="color-btn active" onclick="changeProductColor('airmax', 'Синій', 'https://i.postimg.cc/t4JDc9BL/IMG-3908.jpg', this)">Синій</div>
+                            <div class="color-btn" onclick="changeProductColor('airmax', 'Хакі', 'https://i.postimg.cc/SxRVPmg3/IMG-4134.jpg', this)">Хакі</div>
+                            <div class="color-btn" onclick="changeProductColor('airmax', 'Сірий', 'https://i.postimg.cc/qMjjQNGf/IMG-4135.jpg', this)">Сірий</div>
+                        </div>
+                    </div>
+
+                    <div class="price-row">
+                        <div>
+                            <div class="price-old">2299 грн</div>
+                            <div class="price-new">1599 грн</div>
+                        </div>
+                        <button type="button" class="cta-button" style="width: auto; padding: 12px 20px;" onclick="openOrder('Спортивний костюм Nike Air Max', 'airmax')">Замовити</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ТОВАР 2: Nike (1559 грн) -->
+            <div class="product-card">
+                <div class="product-gallery">
+                    <div class="gift-badge">🎁 Шкарпетки у подарунок</div>
+                    <div class="discount-badge">-30%</div>
+                    <img id="img-nike" src="https://i.postimg.cc/7PT5mdMZ/IMG-4131.jpg" alt="Nike">
+                </div>
+                <div class="product-content">
+                    <div class="product-title">Спортивний костюм Nike</div>
+                    <div class="product-desc">Зручний класичний дизайн на кожен день. Зносостійкий матеріал.</div>
+                    
+                    <div class="color-picker-box">
+                        <h4>Колір:</h4>
+                        <div class="color-selector">
+                            <div class="color-btn active" onclick="changeProductColor('nike', 'Синій', 'https://i.postimg.cc/7PT5mdMZ/IMG-4131.jpg', this)">Синій</div>
+                            <div class="color-btn" onclick="changeProductColor('nike', 'Чорний', 'https://i.postimg.cc/wT87P20K/IMG-4130.jpg', this)">Чорний</div>
+                            <div class="color-btn" onclick="changeProductColor('nike', 'Сірий', 'https://i.postimg.cc/zDRy06SD/IMG-4132.jpg', this)">Сірий</div>
+                        </div>
+                    </div>
+
+                    <div class="price-row">
+                        <div>
+                            <div class="price-old">2250 грн</div>
+                            <div class="price-new">1559 грн</div>
+                        </div>
+                        <button type="button" class="cta-button" style="width: auto; padding: 12px 20px;" onclick="openOrder('Спортивний костюм Nike', 'nike')">Замовити</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ТОВАР 3: New Balance (1559 грн) -->
+            <div class="product-card">
+                <div class="product-gallery">
+                    <div class="gift-badge">🎁 Шкарпетки у подарунок</div>
+                    <div class="discount-badge">-30%</div>
+                    <img id="img-nb" src="https://i.postimg.cc/9fnfBYrv/IMG-4126.jpg" alt="New Balance">
+                </div>
+                <div class="product-content">
+                    <div class="product-title">Спортивний костюм New Balance</div>
+                    <div class="product-desc">Худі + Штани. Турецький трикотаж преміум якості (нитка пеньє).</div>
+                    
+                    <div class="color-picker-box">
+                        <h4>Колір:</h4>
+                        <div class="color-selector">
+                            <div class="color-btn active" onclick="changeProductColor('nb', 'Сірий', 'https://i.postimg.cc/9fnfBYrv/IMG-4126.jpg', this)">Сірий</div>
+                            <div class="color-btn" onclick="changeProductColor('nb', 'Синій', 'https://i.postimg.cc/QMyMqJHv/IMG-4127.jpg', this)">Синій</div>
+                            <div class="color-btn" onclick="changeProductColor('nb', 'Чорний', 'https://i.postimg.cc/Gp5pjxHV/IMG-4128.jpg', this)">Чорний</div>
+                        </div>
+                    </div>
+
+                    <div class="price-row">
+                        <div>
+                            <div class="price-old">2250 грн</div>
+                            <div class="price-new">1559 грн</div>
+                        </div>
+                        <button type="button" class="cta-button" style="width: auto; padding: 12px 20px;" onclick="openOrder('Спортивний костюм New Balance', 'nb')">Замовити</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Калькулятор размера -->
+        <div class="size-helper-box">
+            <h4>Калькулятор розміру</h4>
+            <div class="size-inputs">
+                <input type="number" id="userHeight" class="form-input" placeholder="Зріст (см)">
+                <input type="number" id="userWeight" class="form-input" placeholder="Вага (кг)">
+            </div>
+            <button type="button" class="calc-btn" onclick="calculateSize()">Підібрати розмір</button>
+            <div id="calcResult"></div>
+        </div>
+    </div>
+
+    <!-- Модальное окно заказа -->
+    <div class="modal-overlay" id="orderModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalProductTitle">Оформлення замовлення</h3>
+                <button type="button" class="close-modal" onclick="closeModal()">×</button>
+            </div>
+
+            <div id="formContainer">
+                <form id="orderForm" onsubmit="submitOrder(event)">
+                    <div class="form-group">
+                        <label class="form-label">Оберіть ваш розмір:</label>
+                        <div class="size-selector">
+                            <div class="size-btn active" onclick="selectSize(this)">S</div>
+                            <div class="size-btn" onclick="selectSize(this)">M</div>
+                            <div class="size-btn" onclick="selectSize(this)">L</div>
+                            <div class="size-btn" onclick="selectSize(this)">XL</div>
+                            <div class="size-btn" onclick="selectSize(this)">XXL</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="clientName">ПІБ (Прізвище Ім'я По батькові):</label>
+                        <input type="text" id="clientName" class="form-input" placeholder="Шевченко Тарас Григорович" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="clientPhone">Номер телефону:</label>
+                        <input type="tel" id="clientPhone" class="form-input" placeholder="+38 (0XX) XXX-XX-XX" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="clientCity">Місто (Населений пункт):</label>
+                        <input type="text" id="clientCity" class="form-input" placeholder="наприклад, Харків" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="clientPost">Відділення Нової Пошти:</label>
+                        <input type="text" id="clientPost" class="form-input" placeholder="наприклад, Відділення №5" required>
+                    </div>
+
+                    <button type="submit" class="cta-button" style="margin-top: 10px;" id="submitBtn">Підтвердити замовлення</button>
+                </form>
+            </div>
+
+            <div class="success-message" id="successMessage">
+                <h3>Дякуємо за замовлення! 🎉</h3>
+                <p>Менеджер зв'яжеться з вами найближчим часом.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const BOT_TOKEN = '8975937967:AAHBOewwF5QJC3TGOG9bs8e4fngpNiQ6-DE';
+        const CHAT_ID = '8602531918';
+
+        let selectedSize = 'S';
+        let currentProductTitle = '';
+        let activeProductId = '';
+        
+        const selectedColors = {
+            'airmax': 'Синій',
+            'nike': 'Синій',
+            'nb': 'Сірий'
+        };
+
+        function changeProductColor(productId, colorName, imgSrc, element) {
+            selectedColors[productId] = colorName;
+            
+            const parentBox = element.closest('.color-selector');
+            parentBox.querySelectorAll('.color-btn').forEach(btn => btn.classList.remove('active'));
+            element.classList.add('active');
+            
+            const img = document.getElementById(`img-${productId}`);
+            if (img) {
+                img.style.opacity = '0';
+                setTimeout(() => {
+                    img.src = imgSrc;
+                    img.style.opacity = '1';
+                }, 150);
+            }
+        }
+
+        function openOrder(productName, productId) {
+            currentProductTitle = productName;
+            activeProductId = productId;
+            document.getElementById('modalProductTitle').innerText = `Замовлення: ${productName}`;
+            document.getElementById('orderModal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('orderModal').classList.remove('active');
+        }
+
+        function selectSize(element) {
+            document.querySelectorAll('.size-btn').forEach(btn => btn.classList.remove('active'));
+            element.classList.add('active');
+            selectedSize = element.innerText;
+        }
+
+        function calculateSize() {
+            const h = parseInt(document.getElementById('userHeight').value);
+            const w = parseInt(document.getElementById('userWeight').value);
+            const res = document.getElementById('calcResult');
+
+            if (!h || !w) {
+                res.innerText = 'Введіть зріст та вагу!';
+                return;
+            }
+
+            let size = 'M';
+            if (h < 170 && w < 65) size = 'S';
+            else if (h >= 170 && h < 178 && w >= 65 && w < 75) size = 'M';
+            else if (h >= 178 && h < 185 && w >= 75 && w < 85) size = 'L';
+            else if (h >= 185 && w >= 85 && w < 95) size = 'XL';
+            else if (h >= 185 && w >= 95) size = 'XXL';
+            else size = 'L';
+
+            res.innerText = `Рекомендований розмір: ${size}`;
+            document.querySelectorAll('.size-btn').forEach(btn => {
+                if (btn.innerText === size) selectSize(btn);
+            });
+        }
+
+        document.getElementById('orderModal').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('orderModal')) closeModal();
+        });
+
+        async function submitOrder(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('clientName').value;
+            const phone = document.getElementById('clientPhone').value;
+            const city = document.getElementById('clientCity').value;
+            const post = document.getElementById('clientPost').value;
+            const btn = document.getElementById('submitBtn');
+
+            const chosenColor = selectedColors[activeProductId] || 'Стандартний';
+
+            btn.innerText = 'Відправляємо...';
+            btn.disabled = true;
+
+            const text = `🔥 <b>Нова заявка з каталогу!</b>\n\n` +
+                         `📦 <b>Товар:</b> ${currentProductTitle}\n` +
+                         `🎨 <b>Колір:</b> ${chosenColor}\n` +
+                         `📏 <b>Розмір:</b> ${selectedSize}\n\n` +
+                         `👤 <b>ПІБ:</b> ${name}\n` +
+                         `📞 <b>Телефон:</b> ${phone}\n` +
+                         `🏙 <b>Місто:</b> ${city}\n` +
+                         `📦 <b>НП:</b> ${post}\n\n` +
+                         `🎁 Акція: Шкарпетки у подарунок`;
+
+            const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
+
+            try {
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ chat_id: CHAT_ID, text: text, parse_mode: 'HTML' })
+                });
+
+                const data = await response.json();
+
+                if (data.ok) {
+                    document.getElementById('formContainer').style.display = 'none';
+                    document.getElementById('successMessage').style.display = 'block';
+                    setTimeout(() => {
+                        closeModal();
+                        document.getElementById('orderForm').reset();
+                        document.getElementById('formContainer').style.display = 'block';
+                        document.getElementById('successMessage').style.display = 'none';
+                        btn.innerText = 'Підтвердити замовлення';
+                        btn.disabled = false;
+                    }, 4000);
+                } else {
+                    alert('Помилка відправки. Спробуйте ще раз.');
+                    btn.innerText = 'Підтвердити замовлення';
+                    btn.disabled = false;
+                }
+            } catch (error) {
+                alert('Помилка мережі.');
+                btn.innerText = 'Підтвердити замовлення';
+                btn.disabled = false;
+            }
+        }
+    </script>
+</body>
+</html>
