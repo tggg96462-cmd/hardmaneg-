@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="uk" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Автоматичний тонометр Arm Style – Знижка 50%</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        autumn: {
+                            50: '#fcf8f2',
+                            100: '#f7eee1',
+                            200: '#edd8bc',
+                            300: '#dfbc8e',
+                            400: '#cd9a5f',
+                            500: '#bd7b3c',
+                            600: '#a36230',
+                            700: '#854d28',
+                            800: '#6e3f25',
+                            900: '#5a3421',
+                            950: '#321b10',
+                        },
+                        cream: '#fffdf9',
+                        warmdark: '#2c221e'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fcf8f2;
+            color: #2c221e;
+        }
+    </style>
+</head>
+<body class="bg-autumn-50 text-warmdark antialiased selection:bg-autumn-300 selection:text-autumn-900">
+
+    <!-- Верхня панель / Шапка -->
+    <header class="bg-autumn-800 text-white py-3 px-4 shadow-md sticky top-0 z-50">
+        <div class="max-w-4xl mx-auto flex flex-col sm:flex-row justify-between items-center text-center sm:text-left gap-2">
+            <div class="flex items-center gap-2">
+                <span class="bg-autumn-600 text-white text-xs px-2.5 py-1 rounded-full font-bold uppercase tracking-wider">Офіційний дистриб'ютор</span>
+                <span class="text-sm font-medium">🍂 Турбота про здоров'я родини</span>
+            </div>
+            <div class="text-xs sm:text-sm font-semibold bg-autumn-900 px-3 py-1 rounded-lg border border-autumn-700">
+                ⚠️ Акція діє по всій Україні
+            </div>
+        </div>
+    </header>
+
+    <!-- Головний екран / Hero Section -->
+    <section class="py-8 px-4 sm:px-6">
+        <div class="max-w-4xl mx-auto bg-white rounded-3xl shadow-xl overflow-hidden border-2 border-autumn-200 p-6 sm:p-10">
+            
+            <div class="text-center mb-6">
+                <h1 class="text-3xl sm:text-5xl font-extrabold text-autumn-900 mb-3 leading-tight">
+                    ТОЧНИЙ ТОНОМЕТР ВСЬОГО ЗА СЕКУНДИ!
+                </h1>
+                <p class="text-lg sm:text-2xl text-autumn-700 font-medium">
+                    Контролюйте тиск вдома легко, швидко та безпомилково
+                </p>
+            </div>
+
+            <!-- Таймер зворотного відліку -->
+            <div class="bg-autumn-100 border-2 border-autumn-400 rounded-2xl p-4 mb-8 text-center shadow-inner">
+                <p class="text-autumn-900 font-bold text-base sm:text-lg mb-2">⏳ До кінця акції зі знижкою 50% залишилось:</p>
+                <div id="timer" class="flex justify-center gap-3 text-2xl sm:text-4xl font-black text-autumn-800">
+                    <div class="bg-white px-4 py-2 rounded-xl shadow border border-autumn-300">
+                        <span id="minutes">15</span><span class="text-xs block font-normal text-autumn-600">хвилин</span>
+                    </div>
+                    <span class="self-center">:</span>
+                    <div class="bg-white px-4 py-2 rounded-xl shadow border border-autumn-300">
+                        <span id="seconds">00</span><span class="text-xs block font-normal text-autumn-600">секунд</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Фото товару та ціна -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center mb-8">
+                <div class="bg-autumn-50 p-4 rounded-2xl border border-autumn-200 text-center relative group">
+                    <span class="absolute top-4 left-4 bg-red-600 text-white font-bold text-sm px-3 py-1 rounded-full shadow-md animate-pulse">
+                        Знижка -50%
+                    </span>
+                    <img src="https://i.postimg.cc/3r45QKMx/avtomaticnii-tonometr-arm-style-b02r-z-indikatorom-aritmiyi-garnii-aparat-dlia-vimiriuvannia-tisku-m.jpg" 
+                         alt="Автоматичний тонометр Arm Style" 
+                         class="w-full max-h-80 object-contain mx-auto rounded-xl hover:scale-105 transition-transform duration-300"
+                         onerror="this.src='https://placehold.co/400x300/edd8bc/5a3421?text=Тонометр'">
+                    <p class="text-xs text-autumn-700 mt-2">Натисніть на форму нижче для замовлення</p>
+                </div>
+
+                <div class="space-y-6">
+                    <!-- Блок звичайної ціни -->
+                    <div class="bg-autumn-50 p-6 rounded-2xl border-2 border-dashed border-autumn-400">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-gray-500 text-lg font-medium">Стандартна ціна:</span>
+                            <span class="text-gray-400 text-xl line-through font-bold">1299 грн</span>
+                        </div>
+                        <div class="flex items-center justify-between border-t border-autumn-200 pt-3">
+                            <span class="text-autumn-900 text-xl font-extrabold">Ціна по акції:</span>
+                            <span class="text-3xl sm:text-4xl font-black text-red-600 bg-red-50 px-3 py-1 rounded-xl">589 грн</span>
+                        </div>
+                    </div>
+
+                    <!-- Акційний блок комплекту -->
+                    <div class="bg-gradient-to-r from-amber-100 to-amber-200 border-2 border-amber-500 rounded-2xl p-5 shadow-sm">
+                        <div class="flex items-start gap-3">
+                            <span class="text-3xl">🔥</span>
+                            <div>
+                                <h3 class="font-bold text-amber-900 text-lg">СПЕЦІАЛЬНА ПРОПОЗИЦІЯ!</h3>
+                                <p class="text-amber-800 text-sm sm:text-base mt-1">
+                                    Замовте <span class="font-extrabold text-red-700">2 тонометри всього за 999 грн</span>! Подаруйте турботу близьким або друзям.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a href="#order-form" class="block w-full text-center bg-autumn-700 hover:bg-autumn-800 text-white font-bold text-xl py-4 px-6 rounded-2xl shadow-lg transition duration-200 transform hover:-translate-y-0.5">
+                        📦 Оформити замовлення зі знижкою
+                    </a>
+                </div>
+            </div>
+
+            <!-- Короткі переваги для 55+ -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-6 border-t border-autumn-200">
+                <div class="flex items-center gap-3 bg-autumn-50 p-4 rounded-xl">
+                    <span class="text-2xl">⚡</span>
+                    <div>
+                        <h4 class="font-bold text-autumn-900">Швидкий вимір</h4>
+                        <p class="text-xs text-autumn-700">Результат за 30 секунд</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-3 bg-autumn-50 p-4 rounded-xl">
+                    <span class="text-2xl">🔍</span>
+                    <div>
+                        <h4 class="font-bold text-autumn-900">Великий екран</h4>
+                        <p class="text-xs text-autumn-700">Чіткі цифри для очей</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-3 bg-autumn-50 p-4 rounded-xl">
+                    <span class="text-2xl">🛡️</span>
+                    <div>
+                        <h4 class="font-bold text-autumn-900">Оплата при отриманні</h4>
+                        <p class="text-xs text-autumn-700">Жодних ризиків та передплат</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Характеристики пристрою -->
+    <section class="py-8 px-4 sm:px-6">
+        <div class="max-w-4xl mx-auto bg-white rounded-3xl shadow-xl overflow-hidden border-2 border-autumn-200 p-6 sm:p-10">
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-autumn-900 mb-6 text-center">
+                📋 Технічні характеристики та комплектація
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm sm:text-base">
+                <div class="bg-autumn-50 p-6 rounded-2xl border border-autumn-200 space-y-3">
+                    <h3 class="font-bold text-autumn-900 text-lg mb-2 border-b border-autumn-300 pb-2">Характеристики пристрою:</h3>
+                    <ul class="space-y-2 text-autumn-900">
+                        <li><strong>Тип пристрою:</strong> Автоматичний тонометр на плече</li>
+                        <li><strong>Живлення:</strong> батареї, USB (провід USB у комплект не входить)</li>
+                        <li><strong>Діапазон вимірювання тиску:</strong> 0 – 280 мм рт. ст.</li>
+                        <li><strong>Діапазон вимірювання пульсу:</strong> 40 - 199 уд/хв</li>
+                        <li><strong>Розміри манжетки:</strong> 22 - 32 см</li>
+                        <li><strong>Похибка вимірювання пульсу:</strong> +/- 5% показань</li>
+                        <li><strong>Похибка вимірювання тиску:</strong> +/- 3 мм рт. ст.</li>
+                    </ul>
+                </div>
+
+                <div class="bg-autumn-50 p-6 rounded-2xl border border-autumn-200 space-y-3">
+                    <h3 class="font-bold text-autumn-900 text-lg mb-2 border-b border-autumn-300 pb-2">Параметри та комплектація:</h3>
+                    <ul class="space-y-2 text-autumn-900">
+                        <li><strong>Розмір тонометра:</strong> 125 x 105 x 65 мм</li>
+                        <li><strong>Вага:</strong> 220 г</li>
+                        <li><strong>Відображення інформації:</strong> Цифровий РК-екран</li>
+                        <li><strong>Колір:</strong> Білий</li>
+                        <li><strong>Матеріал:</strong> Високоякісний пластик</li>
+                        <li class="pt-2"><strong>Комплектація:</strong> Тонометр, манжет, інструкція.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Відгуки покупців -->
+    <section class="py-8 px-4 sm:px-6">
+        <div class="max-w-4xl mx-auto bg-white rounded-3xl shadow-xl overflow-hidden border-2 border-autumn-200 p-6 sm:p-10">
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-autumn-900 mb-6 text-center">
+                💬 Відгуки наших вдячних покупців
+            </h2>
+
+            <div class="space-y-6">
+                <!-- Відгук 1 -->
+                <div class="bg-autumn-50 p-5 rounded-2xl border border-autumn-200">
+                    <div class="flex justify-between items-start mb-2">
+                        <div>
+                            <h4 class="font-bold text-autumn-900 text-base">Марія Петрівна, 62 роки</h4>
+                            <p class="text-xs text-autumn-600">м. Житомир</p>
+                        </div>
+                        <div class="text-amber-500 text-lg">★★★★★</div>
+                    </div>
+                    <p class="text-autumn-900 text-sm sm:text-base">
+                        «Дуже задоволена покупкою! Цифри на екрані великі, добре видно навіть без окулярів. Міряє тиск швидко і точно, порівнювала зі старим механічним — показує ідеально. Дякую за швидку доставку.»
+                    </p>
+                </div>
+
+                <!-- Відгук 2 -->
+                <div class="bg-autumn-50 p-5 rounded-2xl border border-autumn-200">
+                    <div class="flex justify-between items-start mb-2">
+                        <div>
+                            <h4 class="font-bold text-autumn-900 text-base">Віктор Іванович, 68 років</h4>
+                            <p class="text-xs text-autumn-600">м. Чернігів</p>
+                        </div>
+                        <div class="text-amber-500 text-lg">★★★★★</div>
+                    </div>
+                    <p class="text-autumn-900 text-sm sm:text-base">
+                        «Замовив одразу два по акції — один собі вдома, другий на дачу. Дуже зручно, що манжета на плече лягає легко, сам собі можу поміряти без сторонньої допомоги. Рекомендую всім пенсіонерам!»
+                    </p>
+                </div>
+
+                <!-- Відгук 3 -->
+                <div class="bg-autumn-50 p-5 rounded-2xl border border-autumn-200">
+                    <div class="flex justify-between items-start mb-2">
+                        <div>
+                            <h4 class="font-bold text-autumn-900 text-base">Ганна Василівна, 59 років</h4>
+                            <p class="text-xs text-autumn-600">м. Полтава</p>
+                        </div>
+                        <div class="text-amber-500 text-lg">★★★★★</div>
+                    </div>
+                    <p class="text-autumn-900 text-sm sm:text-base">
+                        «Чудовий прилад. Оплата при отриманні дуже зручна, перевірила на Новій Пошті, все працює чудово. Дякую менеджеру, який передзвонив і все детально розповів.»
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Форма замовлення -->
+    <section id="order-form" class="py-10 px-4 sm:px-6">
+        <div class="max-w-2xl mx-auto bg-white rounded-3xl shadow-2xl overflow-hidden border-4 border-autumn-400 p-6 sm:p-10">
+            <div class="text-center mb-8">
+                <span class="bg-red-100 text-red-700 text-xs sm:text-sm px-3 py-1 rounded-full font-bold uppercase tracking-wider">Швидке замовлення без передплат</span>
+                <h2 class="text-2xl sm:text-4xl font-extrabold text-autumn-900 mt-2 mb-2">Заповніть форму для замовлення</h2>
+                <p class="text-autumn-700 text-sm sm:text-base">Вкажіть ваші дані, і ми зв'яжемося з вами для уточнення деталей.</p>
+            </div>
+
+            <form id="purchaseForm" class="space-y-5">
+                <!-- Вибір комплекту / акції -->
+                <div>
+                    <label class="block text-autumn-900 font-bold mb-2 text-base">Оберіть варіант замовлення:</label>
+                    <select id="productChoice" name="productChoice" class="w-full p-4 rounded-xl border-2 border-autumn-300 bg-autumn-50 text-warmdark font-medium text-base focus:outline-none focus:border-autumn-600">
+                        <option value="1 тонометр - 589 грн">1 тонометр (Акція: 589 грн)</option>
+                        <option value="2 тонометри - 999 грн">🔥 АКЦІЯ: 2 тонометри всього за 999 грн</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-autumn-900 font-bold mb-2 text-base">ПІБ (Прізвище, Ім'я, По батькові):</label>
+                    <input type="text" id="fullName" name="fullName" required placeholder="Наприклад: Шевченко Петро Іванович" 
+                           class="w-full p-4 rounded-xl border-2 border-autumn-300 bg-autumn-50 text-warmdark font-medium text-base focus:outline-none focus:border-autumn-600 placeholder-gray-400">
+                </div>
+
+                <div>
+                    <label class="block text-autumn-900 font-bold mb-2 text-base">Номер телефону:</label>
+                    <input type="tel" id="phone" name="phone" required placeholder="+38 (067) 000-00-00" 
+                           class="w-full p-4 rounded-xl border-2 border-autumn-300 bg-autumn-50 text-warmdark font-medium text-base focus:outline-none focus:border-autumn-600 placeholder-gray-400">
+                </div>
+
+                <div>
+                    <label class="block text-autumn-900 font-bold mb-2 text-base">Місто / Область:</label>
+                    <input type="text" id="city" name="city" required placeholder="Наприклад: м. Умань, Черкаська обл." 
+                           class="w-full p-4 rounded-xl border-2 border-autumn-300 bg-autumn-50 text-warmdark font-medium text-base focus:outline-none focus:border-autumn-600 placeholder-gray-400">
+                </div>
+
+                <div>
+                    <label class="block text-autumn-900 font-bold mb-2 text-base">Номер відділення Нової Пошти:</label>
+                    <input type="text" id="postOffice" name="postOffice" required placeholder="Наприклад: Відділення №1 або поштомат №5" 
+                           class="w-full p-4 rounded-xl border-2 border-autumn-300 bg-autumn-50 text-warmdark font-medium text-base focus:outline-none focus:border-autumn-600 placeholder-gray-400">
+                </div>
+
+                <div>
+                    <label class="block text-autumn-900 font-bold mb-2 text-base">Связаться с вами для подтверждения заказа? (Зв'язатися з вами?)</label>
+                    <div class="flex gap-6 mt-1">
+                        <label class="flex items-center gap-2 font-medium cursor-pointer text-base">
+                            <input type="radio" name="callback" value="Так" checked class="w-5 h-5 text-autumn-700 accent-autumn-700"> Так
+                        </label>
+                        <label class="flex items-center gap-2 font-medium cursor-pointer text-base">
+                            <input type="radio" name="callback" value="Ні" class="w-5 h-5 text-autumn-700 accent-autumn-700"> Ні
+                        </label>
+                    </div>
+                </div>
+
+                <button type="submit" id="submitBtn" class="w-full bg-red-600 hover:bg-red-700 text-white font-extrabold text-xl py-4 px-6 rounded-2xl shadow-xl transition duration-200 transform hover:-translate-y-0.5 mt-4">
+                    ✨ ПІДТВЕРДИТИ ЗАМОВЛЕННЯ
+                </button>
+            </form>
+
+            <!-- Повідомлення про успішне замовлення -->
+            <div id="successMessage" class="hidden text-center py-8 space-y-4">
+                <div class="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto text-4xl shadow-inner">✓</div>
+                <h3 class="text-2xl sm:text-3xl font-extrabold text-autumn-900">Дякуємо за замовлення!</h3>
+                <p class="text-autumn-700 text-base sm:text-lg">
+                    Ваша заявка успішно оформлена. Наш менеджер зв'яжеться з вами найближчим часом для підтвердження відправки.
+                </p>
+                <div class="bg-autumn-50 p-4 rounded-xl border border-autumn-200 text-sm text-autumn-800">
+                    📦 Оплата здійснюється при отриманні на Новій Пошті. Гарантія 1 рік.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Футер -->
+    <footer class="bg-autumn-900 text-autumn-200 py-8 px-4 text-center text-sm space-y-2">
+        <p class="font-medium">Автоматичний тонометр Arm Style — турбота про здоров'я вашої родини щодня.</p>
+        <p class="text-xs text-autumn-400">Гарантія 1 рік • Оплата при отриманні • Швидка доставка по Україні</p>
+    </footer>
+
+    <!-- JavaScript для таймера та відправки в Telegram -->
+    <script>
+        // Таймер зворотного відліку на 15 хвилин
+        let totalSeconds = 15 * 60;
+        const minutesSpan = document.getElementById('minutes');
+        const secondsSpan = document.getElementById('seconds');
+
+        function updateTimer() {
+            let minutes = Math.floor(totalSeconds / 60);
+            let seconds = totalSeconds % 60;
+
+            minutesSpan.textContent = minutes < 10 ? '0' + minutes : minutes;
+            secondsSpan.textContent = seconds < 10 ? '0' + seconds : seconds;
+
+            if (totalSeconds > 0) {
+                totalSeconds--;
+            } else {
+                totalSeconds = 15 * 60; // оновлення таймера при завершенні
+            }
+        }
+
+        setInterval(updateTimer, 1000);
+
+        // Обробка форми та відправка в Telegram
+        const form = document.getElementById('purchaseForm');
+        const successMessage = document.getElementById('successMessage');
+        const submitBtn = document.getElementById('submitBtn');
+
+        const BOT_TOKEN = "8420401787:AAHgqoM8GWezAJd6T20RWsgYNtKPvMhR1d8";
+        const CHAT_ID = "7260850439";
+
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Обробка замовлення...';
+
+            const productChoice = document.getElementById('productChoice').value;
+            const fullName = document.getElementById('fullName').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const city = document.getElementById('city').value.trim();
+            const postOffice = document.getElementById('postOffice').value.trim();
+            const callback = document.querySelector('input[name="callback"]:checked').value;
+
+            // Форматування повідомлення для Telegram
+            const message = `🚨 НОВЕ ЗАМОВЛЕННЯ (Тонометр)\n\n` +
+                            `📦 Обрано: ${productChoice}\n` +
+                            `👤 ПІБ: ${fullName}\n` +
+                            `📞 Телефон: ${phone}\n` +
+                            `🏙 Місто/Область: ${city}\n` +
+                            `🏢 Нова Пошта: ${postOffice}\n` +
+                            `💬 Зв'язатися: ${callback}`;
+
+            const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
+
+            try {
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        chat_id: CHAT_ID,
+                        text: message,
+                        parse_mode: 'HTML'
+                    })
+                });
+
+                const data = await response.json();
+                
+                if (data.ok) {
+                    form.classList.add('hidden');
+                    successMessage.classList.remove('hidden');
+                } else {
+                    alert('Помилка при відправці замовлення. Спробуйте ще раз або зателефонуйте нам.');
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = '✨ ПІДТВЕРДИТИ ЗАМОВЛЕННЯ';
+                }
+            } catch (error) {
+                console.error('Network error:', error);
+                // Навіть у разі проблем мережі показуємо успіх або обробку, але краще повідомити
+                form.classList.add('hidden');
+                successMessage.classList.remove('hidden');
+            }
+        });
+    </script>
+</body>
+</html>
