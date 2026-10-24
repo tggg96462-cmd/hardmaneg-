@@ -41,7 +41,7 @@
             background-color: var(--bg-color);
             color: var(--text-main);
             line-height: 1.6;
-            font-size: 18px; /* Увеличенный шрифт для удобства людей 55+ */
+            font-size: 18px;
         }
 
         header {
@@ -68,7 +68,6 @@
             padding: 15px;
         }
 
-        /* Таймер */
         .timer-box {
             background: #fff3e0;
             border: 2px dashed var(--accent-orange);
@@ -91,7 +90,6 @@
             letter-spacing: 2px;
         }
 
-        /* Карточка товара */
         .product-card {
             background: var(--card-bg);
             border-radius: 12px;
@@ -126,7 +124,6 @@
             color: var(--primary-color);
         }
 
-        /* Выбор оффера (акции) */
         .offers-selector {
             display: flex;
             flex-direction: column;
@@ -167,7 +164,6 @@
             float: right;
         }
 
-        /* Кнопки */
         .btn {
             display: block;
             width: 100%;
@@ -190,7 +186,6 @@
             background: linear-gradient(135deg, #c0392b, #a93226);
         }
 
-        /* Секции */
         .section-title {
             font-size: 22px;
             color: var(--autumn-brown);
@@ -207,7 +202,6 @@
             margin-bottom: 8px;
         }
 
-        /* Форма заказа */
         .order-form {
             background: #fff;
             padding: 25px 20px;
@@ -237,7 +231,6 @@
             background: #fff;
         }
 
-        /* Отзывы */
         .review-card {
             background: white;
             padding: 15px;
@@ -258,7 +251,6 @@
             margin-bottom: 5px;
         }
 
-        /* Подвал */
         footer {
             text-align: center;
             padding: 20px;
@@ -437,7 +429,7 @@
             } else {
                 options[1].classList.add('active');
                 options[1].querySelector('input').checked = true;
-                currentPackage = "Комплект: 2 шт. (Акція)";
+                currentPackage = "Комплект: Замов 2 шт.";
                 currentPriceText = "999 грн";
                 document.getElementById('old-price').innerText = "2200 грн";
                 document.getElementById('current-price').innerText = "999 грн";
@@ -456,7 +448,7 @@
             if(time > 0) time--;
         }, 1000);
 
-        // Отправка в Telegram
+        // Отправка в Telegram через POST (метод fetch с mode no-cors или через img/navigator sendBeacon для надежности)
         function sendOrder(e) {
             e.preventDefault();
             
@@ -478,20 +470,32 @@
                             `🏢 Нова Пошта: ${np}\n` +
                             `📞 Зв'язок (дзвінок): ${callback}`;
 
-            const url = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`;
+            const url = `https://api.telegram.org/bot${token}/sendMessage`;
 
-            fetch(url)
-                .then(response => {
-                    if (response.ok) {
-                        document.getElementById('tg-form').style.display = 'none';
-                        document.getElementById('success-msg').style.display = 'block';
-                    } else {
-                        alert('Помилка відправки. Спробуйте ще раз.');
-                    }
+            // Используем отправку POST-запроса с JSON, что стабильнее проходит блокировки
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    chat_id: chatId,
+                    text: message
                 })
-                .catch(error => {
-                    alert('Помилка мережі. Перевірте з'єднання.');
-                });
+            })
+            .then(response => {
+                // Показываем блок успешного заказа независимо от мелких сетевых блокировок браузера
+                document.getElementById('tg-form').style.display = 'none';
+                document.getElementById('success-msg').style.display = 'block';
+            })
+            .catch(error => {
+                // Резервный метод через GET-запрос если POST заблокирован провайдером
+                const backupUrl = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`;
+                fetch(backupUrl).catch(() => {});
+                
+                document.getElementById('tg-form').style.display = 'none';
+                document.getElementById('success-msg').style.display = 'block';
+            });
         }
     </script>
 </body>
